@@ -21,19 +21,14 @@ def main_story(team_size):
 
     # Print the outcome of the journey using nada_dsl Outputs
     for result in results:
-        print(f"Debug: result = {result}")  # Debugging line to inspect the Output object
-        
-        # Try to access the value inside the Output object
-        try:
-            members = result.value.value
-        except AttributeError:
-            members = "unknown"
-        
+        members = result.inner.inner  # Accessing the nested value correctly
         if result.name == "team accepted":
             print(f"Outcome: {result.party.name} - The team of {members} members was perfect. They were accepted and continued their quest!")
         else:
             print(f"Outcome: {result.party.name} - Alas, the team had {members} members, which was too many. They had to disband and search for new companions on their journey.")
 
 # Example usage
-team_size = 3  # Change this value to test with different team sizes
+team_size = 5  # Change this value to test with different team sizes
 main_story(team_size)
+
+
